@@ -6,6 +6,15 @@ import (
 	"github.com/mitchellh/mapstructure"
 )
 
+func LoadStruct[T any](optFuncs ...OptionFunc) (T, error) {
+	var (
+		v   T
+		err = Load(&v, optFuncs...)
+	)
+
+	return v, err
+}
+
 func Load(i interface{}, optFuncs ...OptionFunc) error {
 	var (
 		opts = DefaultOptions()
